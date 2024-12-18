@@ -1,0 +1,17 @@
+.whitebubble {
+    background-color: #E0E1DD;
+    border-radius: 25px;
+
+    /* attributs héritables */
+    font-family: Outfit;
+    color: #0D1B2A; /* couleur du texte */
+}
+
+.button {
+    background-color: #778DA9;
+    border-radius: 25px;
+
+    /* attributs héritables */
+    font-family: Outfit;
+    color: #E0E1DD; /* couleur du texte */
+}
