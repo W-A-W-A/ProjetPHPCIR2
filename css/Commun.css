@@ -2,3 +2,11 @@
     font-family: Outfit;
     src: url(sansation_light.woff); /* TODO */
 }
+
+* {
+    background-color: #0D1B2A;
+}
+
+#button {
+    background-color: #778DA9;
+}

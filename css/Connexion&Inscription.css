@@ -1,0 +1,28 @@
+* {
+    text-align: center;
+    padding-bottom: 0%;
+    color: white;
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+form {
+    padding-bottom: 2%;
+}
+
+input {
+    background-color: white;
+    color: #0D1B2A;
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
+}
+
+#button {
+    font-size: 1rem;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 3%;
+    padding-left: 3%;
+}
