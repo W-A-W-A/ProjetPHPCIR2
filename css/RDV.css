@@ -1,4 +1,7 @@
 
+
+/* GENERAL */
+
 * {
     font-family: Outfit;
     color: #0D1B2A; /* couleur du texte */
@@ -11,8 +14,8 @@
 header {
     /* appliqué à la barre de navigation */
     background-color: #415A77;
-    padding: 15px 0;
-    height: 8em;
+    padding: 3px 0;
+    height: auto;
     text-align: center;
 }
 
@@ -29,59 +32,116 @@ main {
     padding-bottom: 0px; /* page collée au bas de l'écran */
 }
 
+/* WHITE BUBBLES */
+
 .whitebubble {
     background-color: #E0E1DD;
     border-radius: 25px;
 
     width: 99%;
-    height: 12em;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
+    height: auto + 20px;
+
+    font-size: larger;
 }
 
 .bubbleslist {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    padding: 10px;
+    padding: 0px;
+}
+
+.whitebubblefield {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    padding-right: 10px; /* pour que le bouton s'aligne bien */
+    padding-bottom: 10px;
+}
+
+.whitebubble div div {
+    padding: 0.5em;
 }
 
 .button {
     background-color: #778DA9;
-    border-radius: 25px;
+    border-radius: 15px;
+    cursor: pointer; /* donne l'apparence de quelque chose de clickable */
 
     /* attributs héritables */
     color: #E0E1DD; /* couleur du texte */
 }
 
+.buttonslist {
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    flex-wrap: wrap;
+    padding: 0px 10px 10px 10px;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.buttonslist div {
+    background-color: #778DA9;
+    border-radius: 15px;
+    padding: 10px 10px 10px 10px;
+    cursor: pointer; /* donne l'apparence de quelque chose de clickable */
+
+    /* attributs héritables */
+    color: #E0E1DD; /* couleur du texte */
+}
+
+/* NAVIGATION BAR */
+
 #navinfos {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    padding: 10px;
     justify-content:space-between;
+    align-items: center;
     font-weight: bold;
+    font-size: 23px;
+    
+}
+
+#navinfosprofile {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 5px;
+    justify-content:space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 23px;
 }
 
 #navinput {
     display: flex;
     flex-direction: row;
     gap: 15px;
-    padding: 20px;
-    justify-content:stretch;
-    font-weight:lighter;
-
-    /* TODO */
+    padding: 5px;
+    justify-content: stretch;
+    font-weight: lighter;
 }
 
 #navinput select {
     border-radius: 25px;
     width: 33%;
+    height: 30px;
+    font-size: larger;
+    background-color: #E0E1DD;
+    border-color: #1B263B;
+    border-width: 3px;
 }
 
 #navinput input {
     border-radius: 25px;
     width: 33%;
+    font-size: larger;
+    background-color: #E0E1DD;
+    border-color: #1B263B;
+    border-width: 3px;
 }
 
 
