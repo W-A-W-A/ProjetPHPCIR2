@@ -1,9 +1,8 @@
-@font-face {
-    font-family: Outfit;
-    src: url(sansation_light.woff); /* TODO */
-}
+/* import de la police utilisée dans le Figma */
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
-* {
+html {
+    /* couleur du "fond" de la page */
     background-color: #0D1B2A;
 }
 

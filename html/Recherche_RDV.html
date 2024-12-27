@@ -1,9 +1,38 @@
 <!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="../css/Commun.css">
+    <link rel="stylesheet" href="../css/RDV.css">
+</head>
 <html>
     <body>
+        <header>
+            <div id="navinfos">
+                <div>Rechercher un rendez-vous</div>
+                <div>Prénom Nom</div>
+            </div>
 
-    <h1>My First Heading</h1>
-    <p>My first paragraph.</p>
-
+            <div id="navinput">
+                <select name="spécialité">
+                    <!-- TODO il faut trouver un moyen d'injecter la table SQL des spés dans ce HTML lors du chargement -->
+                    <option value="1">spé1</option>
+                    <option value="2">spé2</option>
+                    <option value="3">spé3</option>
+                    <option value="4">spé4</option>
+                </select>
+                <input type="text" class="search-bar" placeholder="établissement">
+                <input type="text" class="search-bar" placeholder="médecin">
+            </div>
+        </header>
+        
+        <main>
+            <div class="bubbleslist">
+                <div class="whitebubble"></div>
+                <div class="whitebubble"></div>
+                <div class="whitebubble"></div>
+                <div class="whitebubble"></div>
+                <div class="whitebubble"></div>
+                <div class="whitebubble"></div>
+            </div>
+        </main>
     </body>
 </html>
