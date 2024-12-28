@@ -1,17 +1,147 @@
+
+
+/* GENERAL */
+
+* {
+    font-family: Outfit;
+    color: #0D1B2A; /* couleur du texte */
+    /* suppression des epsaces causés par le truc bizarre */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    /* appliqué à la barre de navigation */
+    background-color: #415A77;
+    padding: 3px 0;
+    height: auto;
+    text-align: center;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* la barre de scroll doit prendre 100% de l'espace vertical, mais sans déborder sur le nav */
+}
+
+main {
+    flex-grow: 1;
+    overflow-y: auto; /* permet à l'utilisateur de scroller verticalement */
+    padding: 20px;
+    padding-bottom: 0px; /* page collée au bas de l'écran */
+}
+
+/* WHITE BUBBLES */
+
 .whitebubble {
     background-color: #E0E1DD;
     border-radius: 25px;
 
-    /* attributs héritables */
-    font-family: Outfit;
-    color: #0D1B2A; /* couleur du texte */
+    width: 99%;
+    height: auto + 20px;
+
+    font-size: larger;
+}
+
+.bubbleslist {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0px;
+}
+
+.whitebubblefield {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    padding-right: 10px; /* pour que le bouton s'aligne bien */
+    padding-bottom: 10px;
+}
+
+.whitebubble div div {
+    padding: 0.5em;
 }
 
 .button {
     background-color: #778DA9;
-    border-radius: 25px;
+    border-radius: 15px;
+    cursor: pointer; /* donne l'apparence de quelque chose de clickable */
 
     /* attributs héritables */
-    font-family: Outfit;
     color: #E0E1DD; /* couleur du texte */
 }
+
+.buttonslist {
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    flex-wrap: wrap;
+    padding: 0px 10px 10px 10px;
+    row-gap: 10px;
+    column-gap: 10px;
+}
+
+.buttonslist div {
+    background-color: #778DA9;
+    border-radius: 15px;
+    padding: 10px 10px 10px 10px;
+    cursor: pointer; /* donne l'apparence de quelque chose de clickable */
+
+    /* attributs héritables */
+    color: #E0E1DD; /* couleur du texte */
+}
+
+/* NAVIGATION BAR */
+
+#navinfos {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content:space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 23px;
+    
+}
+
+#navinfosgroup {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 5px;
+    justify-content:space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+#navinput {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 5px;
+    justify-content: stretch;
+    font-weight: lighter;
+}
+
+#navinput select {
+    border-radius: 25px;
+    width: 33%;
+    height: 30px;
+    font-size: larger;
+    background-color: #E0E1DD;
+    border-color: #1B263B;
+    border-width: 3px;
+}
+
+#navinput input {
+    border-radius: 25px;
+    width: 33%;
+    font-size: larger;
+    background-color: #E0E1DD;
+    border-color: #1B263B;
+    border-width: 3px;
+}
+
+

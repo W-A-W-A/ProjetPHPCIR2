@@ -1,10 +1,20 @@
-@font-face {
-    font-family: Outfit;
-    src: url(sansation_light.woff); /* TODO */
-}
+/* import de la police utilisée dans le Figma */
+@import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
 
 * {
+    scrollbar-color: #E0E1DD #415A77;
+    scrollbar-width: 15;
+    font-family: Outfit;
+}
+
+html {
+    /* couleur du "fond" de la page */
     background-color: #0D1B2A;
+}
+
+.photoprofil {
+    width: 50px;
+    border-radius: 25px;
 }
 
 #button {
