@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8"> <!-- Évite de faire des trics bizarres en PHP -->
     <link rel="stylesheet" href="../css/Commun.css">
     <link rel="stylesheet" href="../css/RDV.css">
 </head>
 <html>
     <body>
         <header>
-            <div id="navinfos">
-                <div id="navinfosgroup">
-                    <img class="photoprofil" src="websitelogo.png">
-                    <div>Vos rendez-vous passés</div>
-                </div>
-                <div id="navinfosgroup">
-                    <div>Prénom Nom</div>
-                    <img class="photoprofil" src="icone_avatar.jpg">
-                </div>
-            </div>
+            <!-- Si le code PHP ci-dessous apparaît comme un commentaire dans l'inspecteur du navigateur, il faut installer l'interprêteur sur la même machine que Apache -->
+            <?php
+                include('../php/NavBar.php');
+                GetNavBar("Vos rendez-vous passés");
+            ?>
         </header>
         
         <main>

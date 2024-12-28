@@ -1,33 +1,17 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="utf-8"> <!-- Évite de faire des trics bizarres en PHP -->
     <link rel="stylesheet" href="../css/Commun.css">
     <link rel="stylesheet" href="../css/RDV.css">
 </head>
 <html>
     <body>
         <header>
-            <div id="navinfos">
-                <div id="navinfosgroup">
-                    <img class="photoprofil" src="websitelogo.png">
-                    <div>Rechercher un rendez-vous</div>
-                </div>
-                <div id="navinfosgroup">
-                    <div>Prénom Nom</div>
-                    <img class="photoprofil" src="icone_avatar.jpg">
-                </div>
-            </div>
-
-            <div id="navinput">
-                <select name="spécialité">
-                    <!-- TODO il faut utiliser PHP pour injecter la table SQL des spés dans ce HTML lors du chargement -->
-                    <option value="1">spé1</option>
-                    <option value="2">spé2</option>
-                    <option value="3">spé3</option>
-                    <option value="4">spé4</option>
-                </select>
-                <input type="text" class="search-bar" placeholder=" établissement">
-                <input type="text" class="search-bar" placeholder=" médecin">
-            </div>
+            <!-- Si le code PHP ci-dessous apparaît comme un commentaire dans l'inspecteur du navigateur, il faut installer l'interprêteur sur la même machine que Apache -->
+            <?php
+                include('../php/NavBar.php');
+                GetNavBar("Rechercher un rendez-vous", true);
+            ?>
         </header>
         
         <main>
