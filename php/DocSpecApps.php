@@ -19,7 +19,7 @@
                 </div>";
     }
 
-    function getAvailabilities(){
+    function GetAvailabilities(){
         echo "TODO avec SQL";
     }
 
@@ -30,7 +30,7 @@
         GetAvailableDay("DAY", 0, 1, $fauxcrenaux);
     }
 
-    function getExampleAvailabilities(){
+    function GetExampleAvailabilities(){
         for($i = 0; $i < 15; ++$i){
             GenerateExampleDay();
         }

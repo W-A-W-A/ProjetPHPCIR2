@@ -16,92 +16,10 @@
         
         <main>
             <div class="bubbleslist">
-                <!-- TODO il faut utiliser PHP pour injecter les résultats dans ce HTML lors de la recherche -->
-                <div class="whitebubble">
-                    <div class="whitebubblefield">
-                        <div><b>Dr Prénom NOM</b></div>
-                        <div><b>Spécialités</b></div>
-                    </div>
-
-                    <div class="whitebubblefield">
-                        <div>établissement</div>
-                    </div>
-                    
-                    <div class="whitebubblefield">
-                        <div>Disponible dès : DD/MM/YYYY HH:mm</div>
-                        <!-- Changer la couleur en rouge est un placeholder, il faut appeller une fonction JS -->
-                        <div class="button" onclick="this.style.color = 'red'">prendre rdv</div>
-                    </div>
-                </div>
-
-                <div class="whitebubble">
-                    <div class="whitebubblefield">
-                        <div><b>Dr Prénom NOM</b></div>
-                        <div><b>Spécialités</b></div>
-                    </div>
-
-                    <div class="whitebubblefield">
-                        <div>établissement</div>
-                    </div>
-                    
-                    <div class="whitebubblefield">
-                        <div>Disponible dès : DD/MM/YYYY HH:mm</div>
-                        <!-- Changer la couleur en rouge est un placeholder, il faut appeller une fonction JS -->
-                        <div class="button" onclick="this.style.color = 'red'">prendre rdv</div>
-                    </div>
-                </div>
-
-                <div class="whitebubble">
-                    <div class="whitebubblefield">
-                        <div><b>Dr Prénom NOM</b></div>
-                        <div><b>Spécialités</b></div>
-                    </div>
-
-                    <div class="whitebubblefield">
-                        <div>établissement</div>
-                    </div>
-                    
-                    <div class="whitebubblefield">
-                        <div>Disponible dès : DD/MM/YYYY HH:mm</div>
-                        <!-- Changer la couleur en rouge est un placeholder, il faut appeller une fonction JS -->
-                        <div class="button" onclick="this.style.color = 'red'">prendre rdv</div>
-                    </div>
-                </div>
-
-                <div class="whitebubble">
-                    <div class="whitebubblefield">
-                        <div><b>Dr Prénom NOM</b></div>
-                        <div><b>Spécialités</b></div>
-                    </div>
-
-                    <div class="whitebubblefield">
-                        <div>établissement</div>
-                    </div>
-                    
-                    <div class="whitebubblefield">
-                        <div>Disponible dès : DD/MM/YYYY HH:mm</div>
-                        <!-- Changer la couleur en rouge est un placeholder, il faut appeller une fonction JS -->
-                        <div class="button" onclick="this.style.color = 'red'">prendre rdv</div>
-                    </div>
-                </div>
-
-                <div class="whitebubble">
-                    <div class="whitebubblefield">
-                        <div><b>Dr Prénom NOM</b></div>
-                        <div><b>Spécialités</b></div>
-                    </div>
-
-                    <div class="whitebubblefield">
-                        <div>établissement</div>
-                    </div>
-                    
-                    <div class="whitebubblefield">
-                        <div>Disponible dès : DD/MM/YYYY HH:mm</div>
-                        <!-- Changer la couleur en rouge est un placeholder, il faut appeller une fonction JS -->
-                        <div class="button" onclick="this.style.color = 'red'">prendre rdv</div>
-                    </div>
-                </div>
-
+                <?php 
+                    include('../php/ResearchedApps.php');
+                    GetExampleResearchedAppointements();
+                ?>
             </div>
         </main>
     </body>

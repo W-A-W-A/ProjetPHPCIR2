@@ -1,5 +1,5 @@
 <?php
-    function getPastAppointement($surname, $name, $spes, $hour, $minutes, $day, $month, $year){
+    function GetResearchedAppointement($surname, $name, $spes, $etab, $day, $month, $year, $hour, $minutes){
         // Changer la couleur en rouge est un placeholder, il faut appeller une fonction
         echo "<div class=\"whitebubble\">
                     <div class=\"whitebubblefield\">
@@ -8,29 +8,29 @@
                     </div>
 
                     <div class=\"whitebubblefield\">
-                        <div>$hour:$minutes</div>
+                        <div>$etab</div>
                     </div>
                     
                     <div class=\"whitebubblefield\">
-                        <div>$day/$month/$year</div>
-                        <div class=\"button\" onclick=\"this.style.color = 'red'\">reprendre rdv</div>
+                        <div>Disponible dès : $day/$month/$year $hour:$minutes</div>
+                        <div class=\"button\" onclick=\"this.style.color = 'red'\">prendre rdv</div>
                     </div>
                 </div>";
     }
 
-    function GetPastAppointements(){
+    function GetResearchedAppointements(){
         echo "TODO avec SQL";
     }
 
     
     // examples
-    function GetExamplePastAppointement(){
-        GetPastAppointement("Prénom", "NOM", "Spécialités", "HH", "mm", "DD", "MM", "YYYY");
+    function GetExampleResearchedAppointement(){
+        GetResearchedAppointement("Prénom", "NOM", "Spécialités", "établissement", "DD", "MM", "YYYY", "HH", "mm");
     }
 
-    function GetExamplePastAppointements(){
+    function GetExampleResearchedAppointements(){
         for($i = 0; $i < 15; ++$i){
-            GetExamplePastAppointement();
+            GetExampleResearchedAppointement();
         }
     }
 ?>

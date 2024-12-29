@@ -16,75 +16,10 @@
         
         <main>
             <div class="bubbleslist">
-                <!-- TODO il faut utiliser PHP pour injecter les rendez-vous lors du chargement de la page -->
-                <div class="whitebubble">
-                    <div class="whitebubblefield">
-                        <div><b>Dr Prénom NOM</b></div>
-                        <div><b>Spécialités</b></div>
-                    </div>
-
-                    <div class="whitebubblefield">
-                        <div>HH:mm</div>
-                    </div>
-                    
-                    <div class="whitebubblefield">
-                        <div>DD/MM/YYYY</div>
-                        <!-- Changer la couleur en rouge est un placeholder, il faut appeller une fonction JS -->
-                        <div class="button" onclick="this.style.color = 'red'">reprendre rdv</div>
-                    </div>
-                </div>
-
-                <div class="whitebubble">
-                    <div class="whitebubblefield">
-                        <div><b>Dr Prénom NOM</b></div>
-                        <div><b>Spécialités</b></div>
-                    </div>
-
-                    <div class="whitebubblefield">
-                        <div>HH:mm</div>
-                    </div>
-                    
-                    <div class="whitebubblefield">
-                        <div>DD/MM/YYYY</div>
-                        <!-- Changer la couleur en rouge est un placeholder, il faut appeller une fonction JS -->
-                        <div class="button" onclick="this.style.color = 'red'">reprendre rdv</div>
-                    </div>
-                </div>
-
-                <div class="whitebubble">
-                    <div class="whitebubblefield">
-                        <div><b>Dr Prénom NOM</b></div>
-                        <div><b>Spécialités</b></div>
-                    </div>
-
-                    <div class="whitebubblefield">
-                        <div>HH:mm</div>
-                    </div>
-                    
-                    <div class="whitebubblefield">
-                        <div>DD/MM/YYYY</div>
-                        <!-- Changer la couleur en rouge est un placeholder, il faut appeller une fonction JS -->
-                        <div class="button" onclick="this.style.color = 'red'">reprendre rdv</div>
-                    </div>
-                </div>
-
-                <div class="whitebubble">
-                    <div class="whitebubblefield">
-                        <div><b>Dr Prénom NOM</b></div>
-                        <div><b>Spécialités</b></div>
-                    </div>
-
-                    <div class="whitebubblefield">
-                        <div>HH:mm</div>
-                    </div>
-                    
-                    <div class="whitebubblefield">
-                        <div>DD/MM/YYYY</div>
-                        <!-- Changer la couleur en rouge est un placeholder, il faut appeller une fonction JS -->
-                        <div class="button" onclick="this.style.color = 'red'">reprendre rdv</div>
-                    </div>
-                </div>
-
+                <?php 
+                    include('../php/PastApps.php');
+                    GetExamplePastAppointements();
+                ?>
             </div>
         </main>
     </body>
