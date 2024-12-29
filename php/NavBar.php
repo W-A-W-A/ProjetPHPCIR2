@@ -12,6 +12,15 @@
             </div>";
         
         if($sb_enabled) {
+            $dsn = 'pgsql:dbname=testdb;host=127.0.0.1;port=5432';
+            $user = 'dbuser';
+            $password = 'dbpass';
+            try {
+                $conn = new PDO($dsn, $user, $password);
+            } catch(PDOException $e) {
+                echo'Connexion échouée : ' . $e->getMessage();
+            }
+
             echo "<div id=\"navinput\">
                 <select name=\"spécialité\">
                     <!-- TODO il faut utiliser PHP pour injecter la table SQL des spés dans ce HTML lors du chargement -->
