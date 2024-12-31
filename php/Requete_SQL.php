@@ -1,7 +1,7 @@
 <?php
-    $dsn = 'pgsql:dbname=testdb;host=127.0.0.1;port=5432';
-    $user = 'dbuser';
-    $password = 'dbpass';
+    $dsn = 'pgsql:dbname=projet1;host=127.0.0.1;port=5432';
+    $user = 'postgres';
+    $password = 'isen';
 
     try {
         $conn = new PDO($dsn, $user, $password);

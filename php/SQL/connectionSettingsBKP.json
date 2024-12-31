@@ -1,0 +1,10 @@
+{
+    "previewLimit": 50,
+    "server": "localhost",
+    "port": 5432,
+    "driver": "PostgreSQL",
+    "name": "ConnectionProjet1",
+    "database": "projet1",
+    "username": "postgres",
+    "password": "isen"
+}
