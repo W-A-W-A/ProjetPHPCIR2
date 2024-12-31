@@ -17,16 +17,13 @@
             $password = 'isen';
             try {
                 $conn = new PDO($dsn, $user, $password);
+                
+                $result = $conn->query("SELECT speciality_name FROM Specialities;");
+                $spes = $result->fetchAll(PDO::FETCH_ASSOC);
+                for($i = 0; $i < count($spes); ++$i){
+                    $spes[$i] = implode($spes[$i]);
+                }
 
-                echo "test";
-                $results = ($conn->query("SELECT speciality_name FROM Specialities"))->fetch(PDO::FETCH_ASSOC);
-                echo $results;
-                $nbResults = count($results);
-                echo $nbResults;
-
-                $spes = $results[0];
-                echo $spes;
-                echo $spes[0];
 
             } catch(PDOException $e) {
                 echo'Connexion échouée : ' . $e->getMessage();
@@ -36,12 +33,11 @@
             echo "<div id=\"navinput\">
                 <select name=\"spécialité\">";
             for($i = 0; $i < count($spes); ++$i){
-                $spe = $spes[$i];
-                echo "<option value=\"1\">$spe</option>";
+                $spe = $spes[$i]; // l'id/valeur des spés est le même que dans la DB
+                echo "<option value=\"$i\">$spe</option>";
             }
                     
-            echo "<option value=\"4\">spé4</option>
-                </select>
+            echo "</select>
                 <input type=\"text\" class=\"search-bar\" placeholder=\" établissement\">
                 <input type=\"text\" class=\"search-bar\" placeholder=\" médecin\">
             </div>";
