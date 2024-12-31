@@ -1,4 +1,6 @@
 <?php
+    include("../php/Requete_SQL.php");
+
     // actual functions
     function GetAvailableDay($dayWeek, $dayNumber, $monthNumber, $crenaux){
         echo "<div class=\"whitebubble\">
@@ -20,6 +22,16 @@
     }
 
     function GetAvailabilities(){
+        $id = 1; // exemple, est censé être passé en argument
+
+        try {
+            $avs = requete("SELECT debut, fin FROM Rdv;");
+            
+        }
+        catch(PDOException $e) {
+            echo'Connexion échouée : ' . $e->getMessage();
+            $avs = [];
+        }
         echo "TODO avec SQL";
     }
 

@@ -1,4 +1,6 @@
 <?php
+    include("../php/Requete_SQL.php");
+
     function GetNavBar($subject, $sb_enabled=false){
         echo "<div id=\"navinfos\">
                 <div id=\"navinfosgroup\">
@@ -12,20 +14,10 @@
             </div>";
         
         if($sb_enabled) {
-            $dsn = 'pgsql:dbname=projet1;host=127.0.0.1;port=5432';
-            $user = 'postgres';
-            $password = 'isen';
             try {
-                $conn = new PDO($dsn, $user, $password);
-                
-                $result = $conn->query("SELECT speciality_name FROM Specialities;");
-                $spes = $result->fetchAll(PDO::FETCH_ASSOC);
-                for($i = 0; $i < count($spes); ++$i){
-                    $spes[$i] = implode($spes[$i]);
-                }
-
-
-            } catch(PDOException $e) {
+                $spes = requete("SELECT speciality_name FROM Specialities;");
+            }
+            catch(PDOException $e) {
                 echo'Connexion échouée : ' . $e->getMessage();
                 $spes = ["spé1", "spé2", "spé3", "spé4"];
             }
