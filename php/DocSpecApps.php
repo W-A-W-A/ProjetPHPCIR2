@@ -1,5 +1,5 @@
 <?php
-    include("../php/Requete_SQL.php");
+    include_once("../php/Requete_SQL.php");
 
     // actual functions
     function GetAvailableDay($dayWeek, $dayNumber, $monthNumber, $crenaux){
@@ -22,17 +22,46 @@
     }
 
     function GetAvailabilities(){
-        $id = 1; // exemple, est censé être passé en argument
+        $id = 0; // exemple, est censé être passé en argument
 
         try {
-            $avs = requete("SELECT debut, fin FROM Rdv;");
-            
+            $avs = requete("SELECT
+            CAST(CAST(debut AS DATE) AS VARCHAR) AS D_d,
+            TO_CHAR(CAST(debut AS TIME), 'HH24:MI') AS H_d,
+            CAST(CAST(fin AS DATE) AS VARCHAR) AS D_f,
+            TO_CHAR(CAST(fin AS TIME), 'HH24:MI') AS H_f
+            FROM Rdv WHERE id_client IS NULL AND id_doctor = $id;");
+            $echoedCount = 0;
+            while($echoedCount < count($avs)){
+                $loop_debut_date = $avs[$echoedCount][0];
+                
+                
+                echo "<div class=\"whitebubble\">
+                    <div class=\"whitebubblefield\">
+                        <div><b>$loop_debut_date</b></div>
+                    </div>
+                    
+                    <div class=\"whitebubblefield\">
+                        <div class=\"buttonslist\">";
+                
+                // on affiche toutes les disponibilités de la journée
+                while($loop_debut_date == $avs[$echoedCount][0] && $echoedCount < count($avs)){
+                    $debut_hour = $avs[$echoedCount][1];
+                    $fin_hour = $avs[$echoedCount][3];
+                    // Changer la couleur en rouge est un placeholder, il faut que ça appelle une fonction
+                    echo "<div onclick=\"this.style.color = 'red'\">$debut_hour - $fin_hour</div>";
+
+                    $echoedCount++;
+                }
+                echo "      </div>
+                            </div>
+                        </div>";
+            }
         }
         catch(PDOException $e) {
             echo'Connexion échouée : ' . $e->getMessage();
             $avs = [];
         }
-        echo "TODO avec SQL";
     }
 
     

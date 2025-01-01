@@ -1,5 +1,5 @@
 <?php
-    include("../php/Requete_SQL.php");
+    include_once("../php/Requete_SQL.php");
 
     function GetNavBar($subject, $sb_enabled=false){
         echo "<div id=\"navinfos\">
@@ -25,7 +25,7 @@
             echo "<div id=\"navinput\">
                 <select name=\"spécialité\">";
             for($i = 0; $i < count($spes); ++$i){
-                $spe = $spes[$i]; // l'id/valeur des spés est le même que dans la DB
+                $spe = implode($spes[$i]); // l'id/valeur des spés est le même que dans la DB
                 echo "<option value=\"$i\">$spe</option>";
             }
                     
