@@ -22,7 +22,9 @@
         <a href="Inscription.php"> Je n'ai pas de compte </a>
 
         <?php
-            connect();
+            if (isset($_POST["email"])) {
+                connect();
+            }
         ?>
 
     </body>

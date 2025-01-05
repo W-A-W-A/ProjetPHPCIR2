@@ -24,34 +24,29 @@ function connect() {
     include_once "Requete_SQL";
 
     $query = "SELECT mail, password FROM Client WHERE mail = " . $_POST["email"] . ";";
-    $result = requete($query);
-
-    if ($result != NULL) {
-        //Send user to another page
-    }
+    $result_p = requete($query);
 
     $query = "SELECT mail, password FROM Doctor WHERE mail = " . $_POST["email"] . ";";
-    $result = requete($query);
+    $result_d = requete($query);
 
-    if ($result != NULL) {
-        //Send user to another page
+    if ($result_p != [] && $result_d != [] ) {
+        //header("Location: Accueil.html");
     }
+
+    echo $result_d;
+    echo $result_p;
 }
 
 // Page Inscription
 function isMailTaken() {
 
     $query = "SELECT mail FROM Client WHERE mail = " . $_POST["email"] . ";";
-    $result = requete($query);
-
-    if ($result != NULL) {
-        return TRUE;
-    }
+    $result_p = requete($query);
 
     $query = "SELECT mail FROM Doctor WHERE mail = " . $_POST["email"] . ";";
-    $result = requete($query);
+    $result_d = requete($query);
 
-    if ($result != NULL) {
+    if ($result_p != [] || $result_d != []) {
         return TRUE;
     }
 
