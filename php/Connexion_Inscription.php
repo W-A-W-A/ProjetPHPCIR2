@@ -1,8 +1,9 @@
 <?php
+// Page Connexion
 function rememberMe ($name){
 
     if(isset($_POST[$name])) {
-        setcookie($name, $_POST[$name], time() + 3 * 24 * 60 * 60); // 3 Days
+        setcookie($name, $_POST[$name], time() + 3 * 24 * 60 * 60, "/"); // 3 Days
         return $_POST[$name];
     }
 
@@ -13,6 +14,11 @@ function rememberMe ($name){
     return '';
 }
 
+function connexion() {
+    
+}
+
+// Page Inscription
 function createAccount($nom, $prenom, $telephone, $email, $password, $utilisation) {
     if ('SELECT mail FROM Client WHERE mail ='.$email == Null && 'SELECT mail FROM Doctor WHERE mail ='.$email == Null) {
     }
