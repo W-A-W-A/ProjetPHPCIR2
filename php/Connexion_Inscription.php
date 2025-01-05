@@ -19,19 +19,59 @@ function rememberMe ($name){
     echo '';
 }
 
-function connexion() {
-
-}
-
-// Page Inscription
-function createAccount() {
+function connect() {
 
     // Connect to data base
-    $conn = pg_connect("host=localhost port=5432 dbname=$dbname user=$user password=$password");
-
+    $conn = pg_connect("host=localhost port=5432 dbname=$dbname user=$user password=$password");    // Add function that gets thse variables in settings file
+    
     if (!$conn) {
         echo "An error occurred while connecting to the database.";
         exit;
+    }
+
+    $query = "SELECT mail, password FROM Client WHERE mail = " . $_POST["email"] . ";";
+    $result = pg_query($conn, $query);
+
+    if ($result != NULL) {
+        //Send user to another page
+    }
+
+    $query = "SELECT mail, password FROM Doctor WHERE mail = " . $_POST["email"] . ";";
+    $result = pg_query($conn, $query);
+
+    if ($result != NULL) {
+        //Send user to another page
+    }
+}
+
+// Page Inscription
+function isMailTaken() {
+
+    $query = "SELECT mail FROM Client WHERE mail = " . $_POST["email"] . ";";
+    $result = pg_query($conn, $query);
+
+    if ($result != NULL) {
+        return TRUE;
+    }
+
+    $query = "SELECT mail FROM Doctor WHERE mail = " . $_POST["email"] . ";";
+    pg_query($conn, $query);
+
+    if ($result != NULL) {
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+function createAccount() {
+
+    // Connect to data base
+    $conn = pg_connect("host=localhost port=5432 dbname=$dbname user=$user password=$password");    // Add function that gets thse variables in settings file
+
+    if (!$conn) {
+        echo "An error occurred while creating your account";
+        return;
     }
 
     // Prepare query

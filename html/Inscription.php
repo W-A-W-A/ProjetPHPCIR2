@@ -23,7 +23,7 @@
         <?php
             include_once "../php/Connexion&Inscription";
 
-            if(isset($_POST["email"])) {
+            if( isMailTaken() == FALSE ) {
                 createAccount();
             }
         ?>
