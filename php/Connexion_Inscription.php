@@ -29,7 +29,21 @@ function connect() {
     $query = "SELECT mail, password FROM Doctor WHERE mail = " . $_POST["email"] . ";";
     $result_d = requete($query);
 
-    if ($result_p != [] || $result_d != [] ) {
+    if ($result_p != [] || $result_d != [] ) {      //Checks if account exists
+
+        // Get the ID unique to the user that logged in
+        if ( $result_d == [] ) {
+            $query = "SELECT id FROM Client WHERE mail = " . $_POST["email"] . ";";
+        }
+        else {
+            $query = "SELECT id FROM Doctor WHERE mail = " . $_POST["email"] . ";";
+        }
+        $result = requete($query);
+
+        // Set session to recognise the user further on
+        $_SESSION["id"] == $result;
+
+        // Redirect to Website
         header("Location: Accueil.html");
     }
 }
@@ -60,10 +74,10 @@ function createAccount() {
 
     // Differentiate patient from doctor
     if ($_POST["Utilisation"] == "patient"){
-        $query = "INSERT INTO Client (name, mail, telephone, password) VALUES ('$name', '$mail', '$telephone', '$password')";
+        $query = "INSERT INTO Client (name, mail, telephone, password) VALUES ('$name', '$mail', '$telephone', '$password');";
     }
     else {
-        $query = "INSERT INTO Doctor (name, mail, telephone, password) VALUES ('$name', '$mail', '$telephone', '$password')";
+        $query = "INSERT INTO Doctor (name, mail, telephone, password) VALUES ('$name', '$mail', '$telephone', '$password');";
     }
 
     // execute the query
