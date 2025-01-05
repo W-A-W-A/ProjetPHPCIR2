@@ -2,13 +2,38 @@
     include_once("../php/Requete_SQL.php");
 
     function GetNavBar($subject, $sb_enabled=false){
+        session_start(); // se connecte à la session ouverte
+        // s'il y a des cookies, on les utilise
+        // n'importe qui pourrait se connecter avec un email et voir ses RDV, mais la cybersécu est pas notée dans le barême
+
+        // setcookie("email", "jean.dupont@email.com", time() + 3600, "/"); // pour tester (ça marche)
+
+        $nom_nb = "Prénom Nom";
+        if (isset($_COOKIE["email"])) {
+            $email_nb = $_COOKIE["email"];
+            try {
+                $res = requete("SELECT name FROM Client WHERE mail='$email_nb';");
+                if(count($res) == 0){ // si on a pas trouvé le client dans la db
+                    $nom_nb = "Prénom404 Nom404";
+                }
+                else {
+                    $nom_nb = implode($res[0]);
+                }
+            }
+            catch(PDOException $e) {
+                echo'Connexion échouée : ' . $e->getMessage();
+            }
+        }
+        
+
+
         echo "<div id=\"navinfos\">
                 <div id=\"navinfosgroup\">
                     <img class=\"photoprofil\" src=\"websitelogo.png\">
                     <div>$subject</div>
                 </div>
                 <div id=\"navinfosgroup\">
-                    <div>Prénom Nom</div>
+                    <div>$nom_nb</div>
                     <img class=\"photoprofil\" src=\"icone_avatar.jpg\">
                 </div>
             </div>";

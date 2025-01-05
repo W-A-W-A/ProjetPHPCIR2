@@ -1,5 +1,7 @@
 /* import de la police utilisée dans le Figma */
 @import url('https://fonts.googleapis.com/css2?family=Outfit&display=swap');
+/* Import de Bootstrap */
+/* @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css'); */
 
 * {
     scrollbar-color: #E0E1DD #415A77;

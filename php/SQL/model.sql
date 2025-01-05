@@ -19,7 +19,7 @@ CREATE TABLE Appointement (
     start DATE,
     end DATE,
     id_doctor INTEGER,
-    id_client INTEGER
+    id_client INTEGER -- est nul si le créneau est libre
 );
 
 CREATE TABLE Doctor (
