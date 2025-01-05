@@ -21,7 +21,7 @@ function rememberMe ($name){
 
 function connect() {
 
-    include_once "Requete_SQL";
+    include_once "Requete_SQL.php";
 
     $query = "SELECT mail, password FROM Client WHERE mail = " . $_POST["email"] . ";";
     $result_p = requete($query);
@@ -29,12 +29,9 @@ function connect() {
     $query = "SELECT mail, password FROM Doctor WHERE mail = " . $_POST["email"] . ";";
     $result_d = requete($query);
 
-    if ($result_p != [] && $result_d != [] ) {
-        //header("Location: Accueil.html");
+    if ($result_p != [] || $result_d != [] ) {
+        header("Location: Accueil.html");
     }
-
-    echo $result_d;
-    echo $result_p;
 }
 
 // Page Inscription

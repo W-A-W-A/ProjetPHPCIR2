@@ -8,13 +8,13 @@
         <h1>Inscription</h1>
 
         <form method="post">
-            <input id="names" type="text" placeholder="nom" maxlength="20" name="nom">
-            <input id="names" type="text" placeholder="prenom" maxlength="20"name="prenom"><br>
-            <input type="number" placeholder="telephone" name="telephone"><br>
-            <input type="email" placeholder="email@service.com" maxlength="40" name="email"><br>
-            <input type="password" placeholder="email-verif@service.com" maxlength="40" name="email-verif"><br>
-            <input type="password" placeholder="mot de passe" maxlength="20" name="password"><br>
-            <label>Patient</label><input type="radio" name="Utilisation" value="patient"><label>Medecin</label><input type="radio" name="Utilisation" value="medecin"><br>
+            <input id="names" type="text" placeholder="nom" maxlength="20" name="nom" required>
+            <input id="names" type="text" placeholder="prenom" maxlength="20"name="prenom" required><br>
+            <input type="number" placeholder="telephone" name="telephone" required><br>
+            <input type="email" placeholder="email@service.com" maxlength="40" name="email" required><br>
+            <input type="password" placeholder="email-verif@service.com" maxlength="40" name="email-verif" required><br>
+            <input type="password" placeholder="mot de passe" maxlength="20" name="password" required><br>
+            <label>Patient</label><input type="radio" name="Utilisation" value="patient" checked><label>Medecin</label><input type="radio" name="Utilisation" value="medecin"><br>
             <input id="button" type="submit" value="S'inscrire">
         </form>
     
