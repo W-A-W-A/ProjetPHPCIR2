@@ -3,19 +3,22 @@
 function rememberMe ($name){
 
     if(isset($_POST[$name])) {
-        setcookie($name, $_POST[$name], time() + 3 * 24 * 60 * 60, "/"); // 3 Days
-        return $_POST[$name];
+
+        if (isset($_POST['remember'])) {
+            setcookie($name, $_POST[$name], time() + 3 * 24 * 60 * 60, "/"); // 3 days cookie
+        }
     }
 
-    elseif (isset($_COOKIE[$name])) {
-        return $_COOKIE[$name];
+    if (isset($_COOKIE[$name])) {
+        echo $_COOKIE[$name];
+        return;
     }
 
-    return '';
+    echo '';
 }
 
 function connexion() {
-    
+
 }
 
 // Page Inscription
