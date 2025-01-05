@@ -45,6 +45,7 @@ VALUES
 
 INSERT INTO Specialities (speciality_name)
 VALUES
+('(sélectionnez une spécialité)')
 ('Cardiologie'),
 ('Dermatologie'),
 ('Chirurgie générale'),
@@ -53,8 +54,8 @@ VALUES
 
 INSERT INTO Doctor_Jobs (id_doctor, id_specialty)
 VALUES
-(1, 1),
-(2, 2),
-(3, 3),
-(4, 4),
-(5, 5);
+(1, 2),
+(2, 3),
+(3, 4),
+(4, 5),
+(5, 6);
