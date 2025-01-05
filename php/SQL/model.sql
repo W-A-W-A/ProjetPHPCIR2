@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS Client CASCADE;
 DROP TABLE IF EXISTS Appointement CASCADE;
+DROP TABLE IF EXISTS Rdv CASCADE;
 DROP TABLE IF EXISTS Doctor CASCADE;
 DROP TABLE IF EXISTS Office CASCADE;
 DROP TABLE IF EXISTS Address CASCADE;
@@ -16,8 +17,8 @@ CREATE TABLE Client (
 
 CREATE TABLE Appointement (
     id SERIAL,
-    start DATE,
-    end DATE,
+    debut TIMESTAMP,
+    fin TIMESTAMP,
     id_doctor INTEGER,
     id_client INTEGER -- est nul si le créneau est libre
 );

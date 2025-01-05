@@ -4,15 +4,15 @@
     function GetNavBar($subject, $sb_enabled=false){
         session_start(); // se connecte à la session ouverte
         // s'il y a des cookies, on les utilise
-        // n'importe qui pourrait se connecter avec un email et voir ses RDV, mais la cybersécu est pas notée dans le barême
+        // n'importe qui pourrait se connecter avec un id et voir ses RDV, mais la cybersécu est pas notée dans le barême
 
-        // setcookie("email", "jean.dupont@email.com", time() + 3600, "/"); // pour tester (ça marche)
+        //setcookie("id_client", 1, time() + 3600, "/"); // pour tester (ça marche)
 
         $nom_nb = "Prénom Nom";
-        if (isset($_COOKIE["email"])) {
-            $email_nb = $_COOKIE["email"];
+        if (isset($_COOKIE["id_client"])) {
+            $id_client_nb = $_COOKIE["id_client"];
             try {
-                $res = requete("SELECT name FROM Client WHERE mail='$email_nb';");
+                $res = requete("SELECT name FROM Client WHERE id='$id_client_nb';");
                 if(count($res) == 0){ // si on a pas trouvé le client dans la db
                     $nom_nb = "Prénom404 Nom404";
                 }

@@ -10,7 +10,9 @@
             <!-- Si le code PHP ci-dessous apparaît comme un commentaire dans l'inspecteur du navigateur, il faut installer l'interprêteur sur la même machine que Apache -->
             <?php
                 include_once('../php/NavBar.php');
-                GetNavBar("Prendre rendez-vous avec Dr. Prénom NOM");
+                include_once('../php/DocSpecApps.php');
+                $nom_doc = getDoctor();
+                GetNavBar("Prendre rendez-vous avec $nom_doc");
             ?>
         </header>
         

@@ -14,7 +14,7 @@ VALUES
 ('Dr. Vincent Roussel', 'vincent.roussel@email.com', '0148901234', 4, 4, 'doctorpassword'),
 ('Dr. Isabelle Lemoine', 'isabelle.lemoine@email.com', '0149012345', 5, 5, 'doctorpassword');
 
-INSERT INTO Appointement (start, end, id_doctor, id_client)
+INSERT INTO Appointement (debut, fin, id_doctor, id_client)
 VALUES
 ('2025-01-10 00:00:00', '2025-01-10 02:00:00', 1, 1),
 ('2025-01-10 00:00:00', '2025-01-10 02:00:00', 1, NULL),

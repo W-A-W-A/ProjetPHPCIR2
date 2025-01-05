@@ -1,6 +1,29 @@
 <?php
     include_once("../php/Requete_SQL.php");
 
+    function getDoctor(){
+        session_start(); // se connecte à la session ouverte
+        //setcookie("id_doctor", 1, time() + 3600, "/"); // pour tester (ça marche)
+
+        $nom_doc = "Prénom Nom";
+        if (isset($_COOKIE["id_doctor"])) {
+            $id_doctor = $_COOKIE["id_doctor"];
+            try {
+                $res = requete("SELECT name FROM Doctor WHERE id='$id_doctor';");
+                if(count($res) == 0){ // si on a pas trouvé le médecin dans la db
+                    $nom_doc = "Prénom404 Nom404";
+                }
+                else {
+                    $nom_doc = implode($res[0]);
+                }
+            }
+            catch(PDOException $e) {
+                echo'Connexion échouée : ' . $e->getMessage();
+            }
+        }
+        return $nom_doc;
+    }
+
     // actual functions
     function GetAvailableDay($dayWeek, $dayNumber, $monthNumber, $crenaux){
         echo "<div class=\"whitebubble\">
@@ -22,7 +45,15 @@
     }
 
     function GetAvailabilities(){
-        $id = 0; // exemple, est censé être passé en argument
+        session_start(); // se connecte à la session ouverte
+        if (isset($_COOKIE["id_doctor"])){
+            $id = intval($_COOKIE["id_doctor"]);
+        }
+        else {
+            $id = 1;
+        }
+        
+
 
         try {
             $avs = requete("SELECT
@@ -30,7 +61,7 @@
             TO_CHAR(CAST(debut AS TIME), 'HH24:MI') AS H_d,
             CAST(CAST(fin AS DATE) AS VARCHAR) AS D_f,
             TO_CHAR(CAST(fin AS TIME), 'HH24:MI') AS H_f
-            FROM Rdv WHERE id_client IS NULL AND id_doctor = $id;");
+            FROM Appointement WHERE id_client IS NULL AND id_doctor = $id;");
             $echoedCount = 0;
             while($echoedCount < count($avs)){
                 $loop_debut_date = $avs[$echoedCount][0];
