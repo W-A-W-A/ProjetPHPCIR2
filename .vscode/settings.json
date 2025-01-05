@@ -9,6 +9,16 @@
             "database": "projet1",
             "username": "postgres",
             "password": "isen"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "ConnectionProjet_Lulu",
+            "database": "projet",
+            "username": "admin"
         }
     ]
 }

@@ -14,7 +14,7 @@
             <input type="email" placeholder="email@service.com" maxlength="40" name="email"><br>
             <input type="password" placeholder="email-verif@service.com" maxlength="40" name="email-verif"><br>
             <input type="password" placeholder="mot de passe" maxlength="20" name="password"><br>
-            <label>Patient</label><input type="radio" name="Utilisation"><label>Medecin</label><input type="radio" name="Utilisation"><br>
+            <label>Patient</label><input type="radio" name="Utilisation" value="patient"><label>Medecin</label><input type="radio" name="Utilisation" value="medecin"><br>
             <input id="button" type="submit" value="S'inscrire">
         </form>
     
@@ -24,7 +24,7 @@
             include_once "../php/Connexion&Inscription";
 
             if(isset($_POST["email"])) {
-                createAccount($_POST["nom"], $_POST["prenom"], $_POST["telephone"], $_POST["email"], $_POST["password"], $_POST["Utilisation"]);
+                createAccount();
             }
         ?>
     </body>
