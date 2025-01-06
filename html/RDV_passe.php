@@ -14,7 +14,7 @@
             ?>
         </header>
         
-        <main>
+        <main class="bg-dark">
             <div class="bubbleslist">
                 <?php 
                     include('../php/PastApps.php');

@@ -1,11 +1,12 @@
 * {
     text-align: center;
     padding-bottom: 0%;
-    color: white;
+    color: #E0E1DD;
 }
 
 h1 {
     font-size: 5rem;
+    color: #E0E1DD;
 }
 
 form {
@@ -13,7 +14,7 @@ form {
 }
 
 input {
-    background-color: white;
+    background-color: #E0E1DD;
     color: #0D1B2A;
     margin-bottom: 0.5%;
     margin-top: 0.5%;
@@ -27,7 +28,7 @@ input {
     padding-bottom: 1%;
     padding-right: 2%;
     padding-left: 2%;
-    color: white;
+    color: #E0E1DD;
     width: 20%;
 }
 

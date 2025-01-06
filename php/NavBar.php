@@ -15,9 +15,6 @@
         header("Location: " . $_SERVER['PHP_SELF']);
     }
 
-    // Check if the 'midday' cookie is set
-    $middayCookie = isset($_COOKIE['midday']) ? $_COOKIE['midday'] : 'not set';
-
 
     function GetNavBar($subject, $sb_enabled=false){
         session_start(); // se connecte à la session ouverte
@@ -65,21 +62,18 @@
                 $spes = ["spé1", "spé2", "spé3", "spé4"];
             }
 
-            echo "<div id=\"navinput\">
-                <select name=\"searched_spe\">";
+            echo "
+                <form method=\"POST\" id=\"navinput\">
+                    <select name=\"searched_spe\">";
             for($i = 0; $i < count($spes); ++$i){
                 $spe = implode($spes[$i]); // l'id/valeur des spés est le même que dans la DB
-                echo "<option value=\"$i\">$spe</option>";
+                echo "  <option value=\"$i\">$spe</option>";
             }
-                    // TODO HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERE
-            echo "</select>
-                <form method=\"POST\">
+            echo "  </select>
                     <input type=\"text\" name=\"searched_etab\" class=\"search-bar\" placeholder=\" établissement\">
                     <input type=\"text\" name=\"searched_doc\" class=\"search-bar\" placeholder=\" médecin\">
-                    <button type=\"submit\" name=\"search_button\">🔎</button>
-                </form>
-
-            </div>";
+                    <button type=\"submit\" name=\"search_button\"> 🔎 </button>
+                </form>";
         }
     }
 ?>
