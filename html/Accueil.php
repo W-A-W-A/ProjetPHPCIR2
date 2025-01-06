@@ -12,6 +12,8 @@
 
             include_once('../php/NavBar.php');
             GetNavBar("Acceuil");
+
+            echo '$_SESSION["id"]';
         ?>
     </header>
 

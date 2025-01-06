@@ -34,3 +34,7 @@ input {
 #names {
     width: 12.5%;
 }
+
+.error {
+    color: red;
+}
