@@ -45,7 +45,7 @@ VALUES
 
 INSERT INTO Specialities (speciality_name)
 VALUES
-('(sélectionnez une spécialité)')
+('(sélectionnez une spécialité)'),
 ('Cardiologie'),
 ('Dermatologie'),
 ('Chirurgie générale'),

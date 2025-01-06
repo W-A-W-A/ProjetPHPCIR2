@@ -22,26 +22,32 @@ function rememberMe ($name){
 function connect() {
 
     include_once "Requete_SQL.php";
+    $mail = $_POST["email"];
 
-    $query = "SELECT mail, password FROM Client WHERE mail = " . $_POST["email"] . ";";
+    $query = "SELECT mail, password FROM Client WHERE mail = '$mail';";
     $result_p = requete($query);
 
-    $query = "SELECT mail, password FROM Doctor WHERE mail = " . $_POST["email"] . ";";
+    $query = "SELECT mail, password FROM Doctor WHERE mail = '$mail';";
     $result_d = requete($query);
+
+    echo "$result_d";
+    echo "$result_p";
 
     if ($result_p != [] || $result_d != [] ) {      //Checks if account exists
 
         // Get the ID unique to the user that logged in
         if ( $result_d == [] ) {
-            $query = "SELECT id FROM Client WHERE mail = " . $_POST["email"] . ";";
+            $query = "SELECT id FROM Client WHERE mail = '$mail';";
+            setcookie(FALSE, $_POST[$doctor], time() + 3 * 24 * 60 * 60, "/");
         }
         else {
-            $query = "SELECT id FROM Doctor WHERE mail = " . $_POST["email"] . ";";
+            $query = "SELECT id FROM Doctor WHERE mail = '$mail';";
+            setcookie(TRUE, $_POST[$doctor], time() + 3 * 24 * 60 * 60, "/");
         }
         $result = requete($query);
 
         // Set session to recognise the user further on
-        $_SESSION["id"] == $result;
+        $_SESSION["id"] = $result;
 
         // Redirect to Website
         header("Location: Accueil.html");
@@ -51,10 +57,12 @@ function connect() {
 // Page Inscription
 function isMailTaken() {
 
-    $query = "SELECT mail FROM Client WHERE mail = " . $_POST["email"] . ";";
+    $mail = $_POST["email"];
+
+    $query = "SELECT mail FROM Client WHERE mail = '$mail';";
     $result_p = requete($query);
 
-    $query = "SELECT mail FROM Doctor WHERE mail = " . $_POST["email"] . ";";
+    $query = "SELECT mail FROM Doctor WHERE mail = '$mail';";
     $result_d = requete($query);
 
     if ($result_p != [] || $result_d != []) {
