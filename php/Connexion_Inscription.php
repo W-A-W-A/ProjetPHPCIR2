@@ -42,13 +42,22 @@ function connect() {
             setcookie("doctor", TRUE, time() + 3 * 24 * 60 * 60, "/");
         }
         $result = requete($query);
-        echo $result[1][1];
+        //print_r ($result);
 
         // Set session to recognise the user further on
-        $_SESSION["id"] = $result[1];
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Encrypted Password
 
-        // Redirect to Website
-        //header("Location: Accueil.php");
+        if ($result[0][1] == $password) {
+            session_start();
+            $_SESSION["id"] = $result[0][0];
+
+            // Redirect to Website
+            header("Location: Accueil.php");
+        }
+
+        else {
+            echo '<br><p class="error">Invalid Password !</p>';
+        }
     }
 
     else {

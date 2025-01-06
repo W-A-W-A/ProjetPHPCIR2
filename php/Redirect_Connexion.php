@@ -1,8 +1,13 @@
 <?php
 function isConnected () {
-    if (isset($_SESSION['user_id'])) {
-        exit();
+
+    session_start();
+
+    if (isset($_SESSION['id'])) {
     }
-    header("Location: Connexion.php");
+    
+    else {
+        header("Location: Connexion.php");
+    }
 }
 ?>
