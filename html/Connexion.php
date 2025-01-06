@@ -11,7 +11,7 @@
         include_once "../php/Connexion_Inscription.php";
     ?>
 
-    <body>
+    <body class="bg-dark">
         <h1>Connexion</h1>
 
         <form method="post" action="Connexion.php">

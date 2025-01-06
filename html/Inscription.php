@@ -1,10 +1,10 @@
-<html>
+<html class="bg-dark">
     <head>
         <link rel="stylesheet" href="../css/Commun.css">
         <link rel="stylesheet" href="../css/Connexion&Inscription.css">
     </head>
     
-    <body></body>
+    <body class="bg-dark"></body>
         <h1>Inscription</h1>
 
         <form method="post" action="Inscription.php">

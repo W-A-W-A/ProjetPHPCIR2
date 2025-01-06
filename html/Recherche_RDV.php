@@ -14,11 +14,11 @@
             ?>
         </header>
         
-        <main>
+        <main class="bg-dark">
             <div class="bubbleslist">
                 <?php 
                     include('../php/ResearchedApps.php');
-                    GetExampleResearchedAppointements();
+                    GetResearchedAppointements();
                 ?>
             </div>
         </main>

@@ -16,7 +16,7 @@
             ?>
         </header>
         
-        <main>
+        <main class="bg-dark">
             <!-- NOTE : on laisse tomber les bulles rétractables, c'est trop d'efforts pour rien, c'était une idée nulle de ma part -->
             <div class="bubbleslist">
                 <?php 
