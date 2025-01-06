@@ -30,9 +30,6 @@ function connect() {
     $query = "SELECT mail, password FROM Doctor WHERE mail = '$mail';";
     $result_d = requete($query);
 
-    echo "$result_d";
-    echo "$result_p";
-
     if ($result_p != [] || $result_d != [] ) {      //Checks if account exists
 
         // Get the ID unique to the user that logged in
@@ -57,7 +54,8 @@ function connect() {
 // Page Inscription
 function isMailTaken() {
 
-    $mail = $_POST["email"];
+    include_once "Requete_SQL.php";
+     $mail = $_POST["email"];
 
     $query = "SELECT mail FROM Client WHERE mail = '$mail';";
     $result_p = requete($query);
@@ -75,17 +73,18 @@ function isMailTaken() {
 function createAccount() {
 
     // Prepare query
-    $name = $_POST['name'];
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
     $mail = $_POST['email'];
     $telephone = $_POST['telephone'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Encrypted Password
 
     // Differentiate patient from doctor
     if ($_POST["Utilisation"] == "patient"){
-        $query = "INSERT INTO Client (name, mail, telephone, password) VALUES ('$name', '$mail', '$telephone', '$password');";
+        $query = "INSERT INTO Client (name, mail, telephone, password) VALUES ('$nom $prenom', '$mail', '$telephone', '$password');";
     }
     else {
-        $query = "INSERT INTO Doctor (name, mail, telephone, password) VALUES ('$name', '$mail', '$telephone', '$password');";
+        $query = "INSERT INTO Doctor (name, mail, telephone, password) VALUES ('$nom $prenom', '$mail', '$telephone', '$password');";
     }
 
     // execute the query

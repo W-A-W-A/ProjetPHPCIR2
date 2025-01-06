@@ -5,8 +5,8 @@
     </head>
 
     <?php
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
+        //error_reporting(E_ALL);
+        //ini_set('display_errors', 1);
 
         include_once "../php/Connexion_Inscription.php";
     ?>
@@ -14,7 +14,7 @@
     <body>
         <h1>Connexion</h1>
 
-        <form method="post">
+        <form method="post" action="Connexion.php">
             <input type="email" placeholder="email@service.com" value="<?php rememberMe("email"); ?>" maxlength="40" name="email" required><br>
             <input type="password" placeholder="mot de passe" maxlength="20" value="<?php rememberMe("password"); ?>" name="password" required><br>
             <a href=""> mot de passe oublier? </a><br>

@@ -5,6 +5,4 @@ function isConnected () {
     }
     header("Location: Connexion.php");
 }
-
-echo "Is connected";
 ?>

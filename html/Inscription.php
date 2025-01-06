@@ -7,7 +7,7 @@
     <body></body>
         <h1>Inscription</h1>
 
-        <form method="post">
+        <form method="post" action="Inscription.php">
             <input id="names" type="text" placeholder="nom" maxlength="20" name="nom" required>
             <input id="names" type="text" placeholder="prenom" maxlength="20"name="prenom" required><br>
             <input type="number" placeholder="telephone" name="telephone" required><br>
@@ -21,7 +21,11 @@
         <a href="Connexion.php"> J'ai déja un compte </a>
 
         <?php
-            include_once "../php/Connexion&Inscription";
+            //error_reporting(E_ALL);
+            //ini_set('display_errors', 1);
+
+        
+            include_once "../php/Connexion_Inscription.php";
 
             if( isMailTaken() == FALSE ) {
                 createAccount();
