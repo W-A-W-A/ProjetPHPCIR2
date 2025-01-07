@@ -49,18 +49,17 @@ function connect() {
         //print_r ($result);
 
         // Set session to recognise the user further on
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Encrypted Password
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);     // Encrypted Password
 
-        //if (password_verify($password, $result[0][1])) {
+        if (password_verify($password, $result[0][1])) {
             $_SESSION["id"] = $result[0][0];
 
-            // Redirect to Website
-            header("Location: Accueil.php");
-        //}
+            header("Location: Accueil.php");    // Redirect to Website
+        }
 
-        //else {
+        else {
             echo '<br><p class="error">Invalid Password !</p>';
-        //}
+        }
     }
 
     else {
