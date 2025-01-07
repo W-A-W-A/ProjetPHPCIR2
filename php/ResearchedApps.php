@@ -1,9 +1,9 @@
 <?php
-    function GetResearchedAppointement($surname, $name, $spes, $etab, $day, $month, $year, $hour, $minutes){
+    function GetResearchedAppointement($name, $spes, $etab, $date){
         // Changer la couleur en rouge est un placeholder, il faut appeller une fonction
         echo "<div class=\"whitebubble\">
                     <div class=\"whitebubblefield\">
-                        <div><b>Dr $surname $name</b></div>
+                        <div><b>$name</b></div>
                         <div><b>$spes</b></div>
                     </div>
 
@@ -12,15 +12,17 @@
                     </div>
                     
                     <div class=\"whitebubblefield\">
-                        <div>Disponible dès : $day/$month/$year $hour:$minutes</div>
+                        <div>Disponible dès : $date</div>
                         <div class=\"button\" onclick=\"this.style.color = 'red'\">prendre rdv</div>
                     </div>
                 </div>";
     }
 
     function GetResearchedAppointements(){
+        /* Récupération des champs recherchés via les cookies */
+
         session_start(); // se connecte à la session ouverte
-        // Récupération des champs recherchés via les cookies
+
         if (isset($_COOKIE["searched_spe"])){$searched_spe = intval($_COOKIE["searched_spe"]);}
         else {$searched_spe = 1;}
 
@@ -30,81 +32,90 @@
         if (isset($_COOKIE["searched_doc"])){$searched_spe = intval($_COOKIE["searched_doc"]);}
         else {$searched_doc = "";}
         
-        /* Sélection de la fonction de recherche en fonction des champs remplis pour obtenir les IDs des médecins */
 
-        // si le champ de la spé est resté vide
-        if($searched_spe == 1){
-            // si le champ de l'établissement est resté vide
-            if($searched_etab == ""){
-                // recherche uniquement en fonction du nom du médecin
-                $request = "SELECT id FROM Doctor WHERE name = '$searched_doc';";
-            }
-            // si le champ du médecin est resté vide
-            if($searched_doc == ""){
-                // recherche uniquement en fonction du nom de l'établissement
-                $request = "SELECT Doctor.id FROM (Doctor INNER JOIN Office ON Doctor.id = Office.id_doctor) INNER JOIN Address ON Office.id_address = Address.id WHERE Address.address = '$searched_etab';";
-            }
+        /* Sélectionne tous les champs possibles, tant pis pour la bonne gestion des ressources */
+        
+        $request = "SELECT Doctor.id FROM 
+        (((Doctor INNER JOIN Office ON Doctor.id = Office.id_doctor) 
+        INNER JOIN Address ON Office.id_address = Address.id)
+        INNER JOIN Doctor_Jobs ON Doctor.id = Doctor_Jobs.id_doctor)
+        INNER JOIN Specialities ON Specialities.id = Doctor_Jobs.id_specialty
+         WHERE ";
+        
+
+        /* Sélection des critères de recherche en fonction des champs remplis pour obtenir les IDs des médecins */
+
+        $searching = false;
+
+        // si le champ de la spé est rempli (une spé autre que "(sélectionnez une spécialité)" a été choisie)
+        if($searched_spe > 1){
+            $request = "$request Specialities.id = $searched_spe";
+            $searching = true;
         }
-        // si le champ de la spé est rempli
+
+        // si le champ de l'établissement est rempli
+        if($searched_etab != ""){
+            $request = "$request Address.address = $searched_etab";
+            $searching = true;
+        }
+
+        // si le champ du médecin est rempli
+        if($searched_doc != ""){
+            $request = "$request Doctor.name = $searched_doc";
+            $searching = true;
+        }
+
+
+        /* requête du résultat de la recherche */
+
+        // si des critères de recherches sont entrés
+        if($searching){
+            $request = "$request;"; // ferme la requête
+        }
+        // si aucun critère de recherche n'est entré
         else{
-            // si le champ de l'établissement est resté vide
-            if($searched_etab == ""){
-                // recherche uniquement en fonction du nom du médecin
-                $request = "SELECT id FROM Doctor WHERE name = '$searched_doc';";
-            }
-            // si le champ du médecin est resté vide
-            if($searched_doc == ""){ // TODO double inner join avec les adresses pour pas juste avoir les IDs
-                // recherche uniquement en fonction du nom de l'établissement
-                $request = "SELECT Doctor.id FROM (Doctor INNER JOIN Office ON Doctor.id = Office.id_doctor) INNER JOIN Address ON Office.id_address = Address.id WHERE Address.address = '$searched_etab';";
-            }
+            $request = "SELECT id FROM Doctor;"; // on sélectionne tous les médecins
         }
 
         try {
-            $avs = requete("SELECT
-            CAST(CAST(debut AS DATE) AS VARCHAR) AS D_d,
-            TO_CHAR(CAST(debut AS TIME), 'HH24:MI') AS H_d,
-            CAST(CAST(fin AS DATE) AS VARCHAR) AS D_f,
-            TO_CHAR(CAST(fin AS TIME), 'HH24:MI') AS H_f
-            FROM Appointement WHERE id_client IS NULL AND id_doctor = $id;");
-            $echoedCount = 0;
-            while($echoedCount < count($avs)){
-                $loop_debut_date = $avs[$echoedCount][0];
-                
-                
-                echo "<div class=\"whitebubble\">
-                    <div class=\"whitebubblefield\">
-                        <div><b>$loop_debut_date</b></div>
-                    </div>
-                    
-                    <div class=\"whitebubblefield\">
-                        <div class=\"buttonslist\">";
-                
-                // on affiche toutes les disponibilités de la journée
-                while($loop_debut_date == $avs[$echoedCount][0] && $echoedCount < count($avs)){
-                    $debut_hour = $avs[$echoedCount][1];
-                    $fin_hour = $avs[$echoedCount][3];
-                    // Changer la couleur en rouge est un placeholder, il faut que ça appelle une fonction
-                    echo "<div onclick=\"this.style.color = 'red'\">$debut_hour - $fin_hour</div>";
+            $ids_docs = requete($request); // récupère tous les IDs des médecins correspondants aux critères de recherches remplis
+            for($y = 0; $y < count($ids_docs); ++$y){
+                $ids_docs[$y] = $ids_docs[$y][0]; // on unpack les lignes
+            }
 
-                    $echoedCount++;
+            for($i = 0; $i < count($ids_docs); ++$i){
+                $id_doc = $ids_docs[$i];
+                $nom_doc = requete("SELECT name FROM Doctor WHERE id = $id_doc;")[0][0];
+
+                $spes = requete("SELECT speciality_name FROM
+                Specialities INNER JOIN (Doctor INNER JOIN Doctor_Jobs ON Doctor.id = Doctor_Jobs.id_doctor) ON Specialities.id = Doctor_Jobs.id_specialty
+                WHERE Doctor.id = $id_doc;");
+                for($s = 0; $s < count($spes); ++$s){
+                    $spes[$s] = $spes[$s][0]; // on prépare à la concaténation
                 }
-                echo "      </div>
-                            </div>
-                        </div>";
+                $spes_doc = implode(" ", $spes); // concaténation
+                print_r($spes);
+
+                $etab_doc = requete("SELECT Address.address FROM
+                (Doctor INNER JOIN Office ON Doctor.id = Office.id_doctor) 
+                INNER JOIN Address ON Office.id_address = Address.id WHERE Doctor.id = $id_doc;")[0][0];
+
+                $nearest_date_doc = requete("SELECT debut FROM Appointement INNER JOIN Doctor ON id_doctor = Doctor.id WHERE Doctor.id = $id_doc ORDER BY debut DESC;")[0][0];
+
+                GetResearchedAppointement($nom_doc, $spes, $etab_doc, $nearest_date_doc);
             }
         }
         catch(PDOException $e) {
             echo'Connexion échouée : ' . $e->getMessage();
-            $avs = [];
         }
 
-        GetResearchedAppointement("Prénom", "NOM", "Spécialités", "établissement", "DD", "MM", "YYYY", "HH", "mm");
+        //GetResearchedAppointement("Prénom NOM", "Spécialités", "établissement", "YYYY/MM/DD HH:mm"); // exemple
     }
 
     
     // examples
     function GetExampleResearchedAppointement(){
-        GetResearchedAppointement("Prénom", "NOM", "Spécialités", "établissement", "DD", "MM", "YYYY", "HH", "mm");
+        GetResearchedAppointement("Prénom", "NOM", "Spécialités", "établissement", "YYYY/MM/DD HH:mm");
     }
 
     function GetExampleResearchedAppointements(){
