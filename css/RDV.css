@@ -67,6 +67,8 @@ main {
     background-color: #778DA9;
     border-radius: 15px;
     cursor: pointer; /* donne l'apparence de quelque chose de clickable */
+    padding-right: 10px;
+    padding-left: 10px;
 
     /* attributs héritables */
     color: #E0E1DD; /* couleur du texte */
@@ -82,7 +84,7 @@ main {
     column-gap: 10px;
 }
 
-.buttonslist div {
+.buttonslist form button {
     background-color: #778DA9;
     border-radius: 15px;
     padding: 10px 10px 10px 10px;

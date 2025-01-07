@@ -54,7 +54,7 @@
 
         echo "<div id=\"navinfos\">
                 <div id=\"navinfosgroup\">
-                    <img class=\"photoprofil\" src=\"websitelogo.png\">
+                    <a href=\"http://localhost/html/Accueil.php\"><img class=\"photoprofil\" src=\"websitelogo.png\"></a>
                     <div>$subject</div>
                 </div>
                 <div id=\"navinfosgroup\">
@@ -77,7 +77,8 @@
                     <select name=\"searched_spe\">";
             for($i = 0; $i < count($spes); ++$i){
                 $spe = implode($spes[$i]); // l'id/valeur des spés est le même que dans la DB
-                echo "  <option value=\"$i\">$spe</option>";
+                $ipp = $i + 1;
+                echo "  <option value=\"$ipp\">$spe</option>";
             }
             echo "  </select>
                     <input type=\"text\" name=\"searched_etab\" class=\"search-bar\" placeholder=\" établissement\">
