@@ -32,14 +32,18 @@ function connect() {
 
     if ($result_p != [] || $result_d != [] ) {      //Checks if account exists
 
+        session_start();
+
         // Get the ID unique to the user that logged in
         if ( $result_d == [] ) {
-            $query = "SELECT id FROM Client WHERE mail = '$mail';";
-            setcookie("doctor", FALSE, time() + 3 * 24 * 60 * 60, "/");
+            $query = "SELECT id, password FROM Client WHERE mail = '$mail';";
+            //setcookie("doctor", FALSE, time() + 3 * 24 * 60 * 60, "/");
+            $_SESSION["doctor"] = FALSE;
         }
         else {
-            $query = "SELECT id FROM Doctor WHERE mail = '$mail';";
-            setcookie("doctor", TRUE, time() + 3 * 24 * 60 * 60, "/");
+            $query = "SELECT id, password FROM Doctor WHERE mail = '$mail';";
+            //setcookie("doctor", TRUE, time() + 3 * 24 * 60 * 60, "/");
+            $_SESSION["doctor"] = TRUE;
         }
         $result = requete($query);
         //print_r ($result);
@@ -47,17 +51,16 @@ function connect() {
         // Set session to recognise the user further on
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Encrypted Password
 
-        if ($result[0][1] == $password) {
-            session_start();
+        //if (password_verify($password, $result[0][1])) {
             $_SESSION["id"] = $result[0][0];
 
             // Redirect to Website
             header("Location: Accueil.php");
-        }
+        //}
 
-        else {
+        //else {
             echo '<br><p class="error">Invalid Password !</p>';
-        }
+        //}
     }
 
     else {
@@ -70,26 +73,29 @@ function isMailValid() {
 
     // Is it already taken ?
     include_once "Requete_SQL.php";
-     $mail = $_POST["email"];
 
-    $query = "SELECT mail FROM Client WHERE mail = '$mail';";
-    $result_p = requete($query);
+    if (isset($_POST["email"])) {
+        $mail = $_POST["email"];
 
-    $query = "SELECT mail FROM Doctor WHERE mail = '$mail';";
-    $result_d = requete($query);
+        $query = "SELECT mail FROM Client WHERE mail = '$mail';";
+        $result_p = requete($query);
 
-    if ($result_p != [] || $result_d != []) {
-        echo '<br><p class="error">Mail already taken !</p>';
-        return FALSE;
-    }
+        $query = "SELECT mail FROM Doctor WHERE mail = '$mail';";
+        $result_d = requete($query);
 
-    // Is the given mail the same as the verification email ?
-    if ($_POST["email"] != $_POST["email-verif"]) {
-        echo '<br><p class="error">Mail de vérification incorrect !</p>';
-        return FALSE;
+        if ($result_p != [] || $result_d != []) {
+            echo '<br><p class="error">Mail already taken !</p>';
+            return FALSE;
         }
 
-    return TRUE;
+        // Is the given mail the same as the verification email ?
+        if ($_POST["email"] != $_POST["email-verif"]) {
+            echo '<br><p class="error">Mail de vérification incorrect !</p>';
+            return FALSE;
+            }
+
+        return TRUE;
+    }
 }
 
 function createAccount() {

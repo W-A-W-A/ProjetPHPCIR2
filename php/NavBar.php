@@ -24,10 +24,20 @@
         //setcookie("id_client", 1, time() + 3600, "/"); // pour tester (ça marche)
 
         $nom_nb = "Prénom Nom";
-        if (isset($_COOKIE["id_client"])) {
-            $id_client_nb = $_COOKIE["id_client"];
+
+        if (isset($_SESSION["id"])) {
+
+            $id_client_nb = $_SESSION["id"];
+
             try {
+
+                if ($_SESSION["doctor"]) {
+                    $res = requete("SELECT name FROM Doctor WHERE id='$id_client_nb';");
+                }
+                else {
                 $res = requete("SELECT name FROM Client WHERE id='$id_client_nb';");
+                }
+
                 if(count($res) == 0){ // si on a pas trouvé le client dans la db
                     $nom_nb = "Prénom404 Nom404";
                 }
