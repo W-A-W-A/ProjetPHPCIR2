@@ -49,9 +49,7 @@ function connect() {
         //print_r ($result);
 
         // Set session to recognise the user further on
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);     // Encrypted Password
-
-        if (password_verify($password, $result[0][1])) {
+        if (password_verify($_POST['password'], $result[0][1])) {
             $_SESSION["id"] = $result[0][0];
 
             header("Location: Accueil.php");    // Redirect to Website
@@ -116,5 +114,27 @@ function createAccount() {
 
     // execute the query
     requete($query);
+}
+
+function updatePassword() {
+    include_once("../php/Requete_SQL.php");
+    $revocMail = $_POST["revoc-email"];
+    $recovPassword = password_hash($_POST['recov-password'], PASSWORD_BCRYPT);
+
+    if ($_POST["Utilisation"] == "patient") {
+        $result = requete("SELECT telephone FROM Client WHERE mail='$revocMail'");
+
+        if ($result[0] == $_POST["recov-phone"]) {
+            requete("UPDATE Client SET password = '$recovPassword' WHERE mail = '$revocMail'");
+        }
+
+        else {
+            $result = requete("SELECT telephone FROM Doctor WHERE mail='$revocMail'");
+
+            if ($result[0] == $_POST["recov-phone"]) {
+                requete("UPDATE Doctor SET password = '$recovPassword' WHERE mail = '$revocMail'");
+            }
+        }
+    }
 }
 ?>

@@ -7,7 +7,7 @@
     <header>
         <?php
             include_once("../php/Redirect_Connexion.php");
-            //isConnected();
+            isConnected();
 
             include_once('../php/NavBar.php');
             GetNavBar("Acceuil");

@@ -9,8 +9,8 @@
 
         <form method="post" action="Inscription.php">
             <input id="names" type="text" placeholder="nom" maxlength="20" name="nom" required>
-            <input id="names" type="text" placeholder="prenom" maxlength="20"name="prenom" required><br>
-            <input type="number" placeholder="telephone" name="telephone" required><br>
+            <input id="names" type="text" placeholder="prenom" maxlength="20" name="prenom" required><br>
+            <input type="tel" placeholder="telephone" maxlength="12" name="telephone" required><br>
             <input type="email" placeholder="email@service.com" maxlength="40" name="email" required><br>
             <input type="password" placeholder="email-verif@service.com" maxlength="40" name="email-verif" required><br>
             <input type="password" placeholder="mot de passe" maxlength="20" name="password" required><br>
