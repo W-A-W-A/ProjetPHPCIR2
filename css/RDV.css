@@ -84,7 +84,7 @@ main {
     column-gap: 10px;
 }
 
-.buttonslist div {
+.buttonslist form button {
     background-color: #778DA9;
     border-radius: 15px;
     padding: 10px 10px 10px 10px;

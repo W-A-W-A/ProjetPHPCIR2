@@ -1,5 +1,30 @@
 <?php
     include_once("../php/Requete_SQL.php");
+    session_start(); // se connecte à la session ouverte
+    //$id_client = $_SESSION["id"]; // ne fonctionne pas
+
+    for($i = 0; $i < 100; ++$i){
+        if(isset($_POST["button_rdv_$i"])){
+            try{
+                // on trouve l'id du client en fonction de son email de connexion stocké en cookie
+                $email = $_COOKIE["email"];
+                $id_client = requete("SELECT id FROM Client WHERE mail='$email';")[0][0];
+                // on affecte ce rendez-vous au client connecté
+                requete("UPDATE Appointement SET id_client=$id_client WHERE id=$i;");
+            }
+            catch(PDOException $e) {
+                echo'Connexion échouée : ' . $e->getMessage();
+                $avs = [];
+            }
+
+
+
+            // refreshes the page to make the taken appointement's button dissapear
+            header("Location: http://localhost/html/RDV_medecin.php");
+            die();
+        }
+    }
+
 
     function getDoctor(){
         session_start(); // se connecte à la session ouverte
@@ -25,7 +50,8 @@
     }
 
     // actual functions
-    function GetAvailableDay($dayWeek, $dayNumber, $monthNumber, $crenaux){
+    /*
+    function GetAvailableDay($dayWeek, $dayNumber, $monthNumber, $crenaux, $crenaux_ids){
         echo "<div class=\"whitebubble\">
                     <div class=\"whitebubblefield\">
                         <div><b>$dayWeek $dayNumber/$monthNumber</b></div>
@@ -42,7 +68,7 @@
         echo "      </div>
                     </div>
                 </div>";
-    }
+    } */
 
     function GetAvailabilities(){
         session_start(); // se connecte à la session ouverte
@@ -60,7 +86,8 @@
             CAST(CAST(debut AS DATE) AS VARCHAR) AS D_d,
             TO_CHAR(CAST(debut AS TIME), 'HH24:MI') AS H_d,
             CAST(CAST(fin AS DATE) AS VARCHAR) AS D_f,
-            TO_CHAR(CAST(fin AS TIME), 'HH24:MI') AS H_f
+            TO_CHAR(CAST(fin AS TIME), 'HH24:MI') AS H_f,
+            id
             FROM Appointement WHERE id_client IS NULL AND id_doctor = $id;");
             $echoedCount = 0;
             while($echoedCount < count($avs)){
@@ -79,8 +106,11 @@
                 while($loop_debut_date == $avs[$echoedCount][0] && $echoedCount < count($avs)){
                     $debut_hour = $avs[$echoedCount][1];
                     $fin_hour = $avs[$echoedCount][3];
-                    // Changer la couleur en rouge est un placeholder, il faut que ça appelle une fonction
-                    echo "<div onclick=\"this.style.color = 'red'\">$debut_hour - $fin_hour</div>";
+                    $id_rdv = $avs[$echoedCount][4];
+
+                    echo "<form method=\"POST\">
+                            <button class=\"button\" type=\"submit\" name=\"button_rdv_$id_rdv\">$debut_hour - $fin_hour</button>
+                        </form>";
 
                     $echoedCount++;
                 }
@@ -92,19 +122,6 @@
         catch(PDOException $e) {
             echo'Connexion échouée : ' . $e->getMessage();
             $avs = [];
-        }
-    }
-
-    
-    // examples
-    function GenerateExampleDay(){
-        $fauxcrenaux = ["HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm", "HH:mm"];
-        GetAvailableDay("DAY", 0, 1, $fauxcrenaux);
-    }
-
-    function GetExampleAvailabilities(){
-        for($i = 0; $i < 15; ++$i){
-            GenerateExampleDay();
         }
     }
 ?>

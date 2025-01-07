@@ -128,7 +128,7 @@
                 INNER JOIN Address ON Office.id_address = Address.id WHERE Doctor.id = $id_doc;")[0][0];
 
                 $nearest_date_doc = requete("SELECT debut FROM Appointement INNER JOIN Doctor ON id_doctor = Doctor.id WHERE Doctor.id = $id_doc ORDER BY debut DESC;")[0][0];
-
+                
                 GetResearchedAppointement($nom_doc, $spes_doc, $etab_doc, $nearest_date_doc, $id_doc);
             }
         }
