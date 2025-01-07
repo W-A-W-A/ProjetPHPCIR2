@@ -6,8 +6,8 @@
         //setcookie("id_doctor", 1, time() + 3600, "/"); // pour tester (ça marche)
 
         $nom_doc = "Prénom Nom";
-        if (isset($_COOKIE["id_doctor"])) {
-            $id_doctor = $_COOKIE["id_doctor"];
+        if (isset($_COOKIE["selected_doc"])) {
+            $id_doctor = intval($_COOKIE["selected_doc"]);
             try {
                 $res = requete("SELECT name FROM Doctor WHERE id='$id_doctor';");
                 if(count($res) == 0){ // si on a pas trouvé le médecin dans la db
@@ -46,8 +46,8 @@
 
     function GetAvailabilities(){
         session_start(); // se connecte à la session ouverte
-        if (isset($_COOKIE["id_doctor"])){
-            $id = intval($_COOKIE["id_doctor"]);
+        if (isset($_COOKIE["selected_doc"])){
+            $id = intval($_COOKIE["selected_doc"]);
         }
         else {
             $id = 1;

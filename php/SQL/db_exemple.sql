@@ -55,6 +55,7 @@ VALUES
 INSERT INTO Doctor_Jobs (id_doctor, id_specialty)
 VALUES
 (1, 2),
+(1, 3),
 (2, 3),
 (3, 4),
 (4, 5),
