@@ -30,13 +30,32 @@
         if (isset($_COOKIE["searched_doc"])){$searched_spe = intval($_COOKIE["searched_doc"]);}
         else {$searched_doc = "";}
         
-        // Sélection de la fonction de recherche en fonction des champs remplis
+        /* Sélection de la fonction de recherche en fonction des champs remplis pour obtenir les IDs des médecins */
+
+        // si le champ de la spé est resté vide
         if($searched_spe == 1){
+            // si le champ de l'établissement est resté vide
             if($searched_etab == ""){
-                $request = "SELECT name FROM Doctor INNER JOIN Office ON Doctor.id = Office.id_doctor WHERE name = '$searched_doc';"; // même si le champ est vide
+                // recherche uniquement en fonction du nom du médecin
+                $request = "SELECT id FROM Doctor WHERE name = '$searched_doc';";
             }
+            // si le champ du médecin est resté vide
+            if($searched_doc == ""){
+                // recherche uniquement en fonction du nom de l'établissement
+                $request = "SELECT Doctor.id FROM (Doctor INNER JOIN Office ON Doctor.id = Office.id_doctor) INNER JOIN Address ON Office.id_address = Address.id WHERE Address.address = '$searched_etab';";
+            }
+        }
+        // si le champ de la spé est rempli
+        else{
+            // si le champ de l'établissement est resté vide
+            if($searched_etab == ""){
+                // recherche uniquement en fonction du nom du médecin
+                $request = "SELECT id FROM Doctor WHERE name = '$searched_doc';";
+            }
+            // si le champ du médecin est resté vide
             if($searched_doc == ""){ // TODO double inner join avec les adresses pour pas juste avoir les IDs
-                $request = "SELECT name FROM Doctor INNER JOIN Office ON Doctor.id = Office.id_doctor WHERE adress = '$searched_etab';"; // même si le champ est vide
+                // recherche uniquement en fonction du nom de l'établissement
+                $request = "SELECT Doctor.id FROM (Doctor INNER JOIN Office ON Doctor.id = Office.id_doctor) INNER JOIN Address ON Office.id_address = Address.id WHERE Address.address = '$searched_etab';";
             }
         }
 

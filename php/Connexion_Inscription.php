@@ -46,12 +46,12 @@ function connect() {
             $_SESSION["doctor"] = TRUE;
         }
         $result = requete($query);
-        //print_r ($result);
+        print_r ($result);
 
         // Set session to recognise the user further on
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);     // Encrypted Password
+        $hash = password_hash($_POST['password'], PASSWORD_BCRYPT);     // Encrypted Password
 
-        if (password_verify($password, $result[0][1])) {
+        if (password_verify($result[0][1], $hash)) {
             $_SESSION["id"] = $result[0][0];
 
             header("Location: Accueil.php");    // Redirect to Website
