@@ -43,6 +43,8 @@ Tous les changements suivants seront a faire dans le dossier `etc/apache2/sites-
 
 Vous pouvez ensuite copier le fichier `000-default.conf` et cree un nouveau fichier dans le quelle vous rajouterait les modifications qui suivent.
 
+Pour activer la configuration que vous allez crée utiliser `a2enconf` puis selectionner votre ficher, il faut aussi dessactiver les autres configurations avec `a2disconf`.
+
 **Changer le Root :**
 
 Modifier l'attribut `DocumentRoot` pour que la racine soit dans le dossier du site/projet.
