@@ -54,7 +54,7 @@
 
         echo "<div id=\"navinfos\">
                 <div id=\"navinfosgroup\">
-                    <a href=\"http://localhost/html/Accueil.php\"><img class=\"photoprofil\" src=\"websitelogo.png\"></a>
+                    <a href=\"Accueil.php\"><img class=\"photoprofil\" src=\"websitelogo.png\"></a>
                     <div>$subject</div>
                 </div>
                 <div id=\"navinfosgroup\">

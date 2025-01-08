@@ -41,6 +41,7 @@
                             <input type="text" placeholder="Nouveau Mot de Passe" maxlength="40" name="recov-password" required><br>
                             <input id="button" type="submit" value="Valider"><br>
                         </form>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
