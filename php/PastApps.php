@@ -3,6 +3,15 @@
     session_start(); // se connecte à la session ouverte
     //$id_client = $_SESSION["id"]; // ne fonctionne pas
 
+    for($i = 0; $i < 50; ++$i){
+        if(isset($_POST["button_pastrdv_$i"])) {
+            // met en cookie l'id du médecin sélectionné
+            setcookie('selected_doc', "$i", time() + 3600, "/");
+            header("Location: http://localhost/html/RDV_medecin.php");
+            die();
+        }
+    }
+
 
 
 
@@ -54,11 +63,17 @@
                 $id_doctor = $past_rdvs[$i][4];
                 $name = $past_rdvs[$i][5];
                 
-                // TODO
-                $spes = $requete("FROM ((Appointement INNER JOIN Doctor ON Appointement.id_doctor = Doctor.id) INNER JOIN Doctor_Jobs ON Doctor_Jobs.id_doctor = Doctor.id) INNER JOIN Specialities ON Doctor_Jobs.id_specialty = Specialities.id");
-                
-                $spes = "placeholder";
-
+                $spes_l = requete("SELECT DISTINCT Specialities.speciality_name
+                FROM ((Appointement
+                INNER JOIN Doctor ON Appointement.id_doctor = Doctor.id)
+                INNER JOIN Doctor_Jobs ON Doctor_Jobs.id_doctor = Doctor.id)
+                INNER JOIN Specialities ON Doctor_Jobs.id_specialty = Specialities.id
+                WHERE Appointement.id_client = $id_client AND Appointement.id_doctor = $id_doctor
+                ;");
+                for($s = 0; $s < count($spes_l); ++$s){
+                    $spes_l[$s] = $spes_l[$s][0]; // on prépare à la concaténation
+                }
+                $spes = implode(" ", $spes_l); // concaténation
                 
                 getPastAppointement($name, $spes, $heure_debut, $date_debut, $id_doctor);
             }
