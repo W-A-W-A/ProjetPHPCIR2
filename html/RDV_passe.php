@@ -21,7 +21,7 @@
             <div class="bubbleslist">
                 <?php 
                     include('../php/PastApps.php');
-                    GetExamplePastAppointements();
+                    GetPastAppointements();
                 ?>
             </div>
         </main>

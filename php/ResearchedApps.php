@@ -24,7 +24,6 @@
                 </form>"; */
 
 
-        // Changer la couleur en rouge est un placeholder, il faut appeller une fonction
         echo "<div class=\"whitebubble\">
                     <div class=\"whitebubblefield\">
                         <div><b>$name</b></div>
