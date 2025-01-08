@@ -9,6 +9,8 @@ L'objectif été de recrée un site similaire a doctolib ou un utilisatuer poura
 
 **Installation Debian :**
 
+Voir : `https://wiki.debian.org/InstallingDebianOn/Microsoft/Windows/SubsystemForLinux`
+
 **Installation Apache2 :**
 
 Dans le terminal de WSL ecrire cette ligne de commande afin d'installer Apache2.
@@ -32,4 +34,35 @@ Desormais en cherchant "localhost/projetPHPCIR2" vous devriez étre rediriger ve
 Si ce n'est pas le cas il se peut que vous n'ayez pas démarez le serveur avec la commande `sudo service apache2 start`.
 
 # **Instalations Bonus :**
-[Avec les cours de serveur web, bloquer l'access au dossiers css et php]
+
+Les changement suivant ne change pas le fonctionnement du site et ne sont pas nessessaire !
+
+Pour voir les changement que vous faitez il faudra utiliser `sudo service apache2 reload` afin de voir les modifications.
+
+Tous les changements suivants seront a faire dans le dossier `etc/apache2/sites-available`.
+
+Vous pouvez ensuite copier le fichier `000-default.conf` et cree un nouveau fichier dans le quelle vous rajouterait les modifications qui suivent.
+
+**Changer le Root :**
+
+Modifier l'attribut `DocumentRoot` pour que la racine soit dans le dossier du site/projet.
+
+**Changer l'url :**
+
+Rajouter `ServerName doctolib` a la ligne qui suit "DocumentRoot".
+
+Ceci permetera de simplement écrire doctolib dans la bar de recherche afin d'arriver sur le site, bien sur l'ancienne methode marchera toujour.
+
+**Sécuriser les dossiers pas destiné au utilisateurs :**
+
+Rajouter les ligne suivantes pour emecher aux utilisateurs d'acceder au dossier php et css :
+
+```conf
+<Location "/php/">
+    Require all denied 
+</Location>
+
+<Location "/css/">
+    Require all denied   
+</Location>
+```
