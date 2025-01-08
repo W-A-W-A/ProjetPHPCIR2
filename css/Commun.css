@@ -18,6 +18,14 @@ html {
     background-color: #0D1B2A;
 }
 
+.card-body {
+    color: #E0E1DD;
+}
+
+.card-text {
+    color: #E0E1DD;
+}
+
 .photoprofil {
     width: 50px;
     border-radius: 25px;

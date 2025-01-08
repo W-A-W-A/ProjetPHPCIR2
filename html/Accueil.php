@@ -14,7 +14,7 @@
         ?>
     </header>
 
-    <body><br>
+    <body class="bg-dark"><br>
         <div class="d-flex flex-row mb-3 justify-content-evenly align-self-stretch" style="height: 10rem;">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="Accueil1.jpg" alt="Card image cap">
