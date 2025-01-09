@@ -17,7 +17,7 @@
         <form method="post" action="Connexion.php">
             <input type="email" placeholder="email@service.com" value="<?php rememberMe("email"); ?>" maxlength="40" name="email" required><br>
             <input type="password" placeholder="mot de passe" maxlength="20" value="<?php rememberMe("password"); ?>" name="password" required><br>
-            <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> mot de passe oublier? </a><br>
+            <a type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"> mot de passe oublié ? </a><br>
             <input id="button" type="submit" value="Se Connecter"><br>
             <label>remember Me</label><input type="checkbox" value="<?php rememberMe("remember"); ?>" name="remember">
         </form>
